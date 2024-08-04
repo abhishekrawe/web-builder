@@ -14,6 +14,7 @@ import {
 
 import { cn } from "@/lib/utils"
 import { Label } from "@/components/ui/label"
+import { Input } from "./input"
 
 const Form = FormProvider
 
@@ -175,4 +176,6 @@ export {
   FormDescription,
   FormMessage,
   FormField,
+  Input,
+  Label
 }
