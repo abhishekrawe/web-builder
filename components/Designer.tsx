@@ -9,6 +9,9 @@ import { ElementsType, FormElementInstance, FormElements } from "./FormElements"
 import { idGenerator } from "@/lib/idGenerator";
 import { Button } from "./ui/button";
 import { BiSolidTrash } from "react-icons/bi";
+import PropertiesFormSidebar from "./PropertiesFormSidebar";
+import FormElementsSidebar from "./FormElementsSidebar";
+import { Separator } from "./ui/separator";
 
 function Designer() {
     const { elements, addElement, selectedElement, setSelectedElement, removeElement } = useDesigner();
@@ -60,7 +63,7 @@ function Designer() {
                     throw new Error("element not found");
                 }
 
-                let indexForNewElement = overElementIndex; // i assume i'm on top-half
+                let indexForNewElement = overElementIndex;
                 if (isDroppingOverDesignerElementBottomHalf) {
                     indexForNewElement = overElementIndex + 1;
                 }
@@ -90,7 +93,7 @@ function Designer() {
                 const activeElement = { ...elements[activeElementIndex] };
                 removeElement(activeId);
 
-                let indexForNewElement = overElementIndex; // i assume i'm on top-half
+                let indexForNewElement = overElementIndex;
                 if (isDroppingOverDesignerElementBottomHalf) {
                     indexForNewElement = overElementIndex + 1;
                 }
@@ -102,6 +105,11 @@ function Designer() {
 
     return (
         <div className="flex w-full h-full">
+            <aside className="w-[400px] max-w-[400px] flex flex-col flex-grow gap-2 border-l-2 border-muted p-4 bg-background overflow-y-auto h-full">
+                <p className="text-sm text-foreground/70">Select Elements</p>
+                <Separator className="my-2" />
+                <PropertiesFormSidebar />
+            </aside>
             <div
                 className="p-4 w-full"
                 onClick={() => {
@@ -125,7 +133,7 @@ function Designer() {
                         </div>
                     )}
                     {elements.length > 0 && (
-                        <div className="flex flex-col  w-full gap-2 p-4">
+                        <div className="flex flex-col  w-full gap-2 p-4 h-auto">
                             {elements.map((element) => (
                                 <DesignerElementWrapper key={element.id} element={element} />
                             ))}
@@ -133,7 +141,10 @@ function Designer() {
                     )}
                 </div>
             </div>
-            <DesignerSidebar />
+            <aside className="w-[400px] max-w-[400px] flex flex-col flex-grow gap-2 border-l-2 border-muted p-4 bg-background overflow-y-auto h-full">
+                <FormElementsSidebar />
+            </aside>
+            
         </div>
     );
 }
@@ -177,7 +188,7 @@ function DesignerElementWrapper({ element }: { element: FormElementInstance }) {
             ref={draggable.setNodeRef}
             {...draggable.listeners}
             {...draggable.attributes}
-            className="relative h-[120px] flex flex-col text-foreground hover:cursor-pointer rounded-md ring-1 ring-accent ring-inset"
+            className="relative flex flex-col text-foreground hover:cursor-pointer rounded-md ring-1 ring-accent ring-inset"
             onMouseEnter={() => {
                 setMouseIsOver(true);
             }}
@@ -213,13 +224,14 @@ function DesignerElementWrapper({ element }: { element: FormElementInstance }) {
             {topHalf.isOver && <div className="absolute top-0 w-full rounded-md h-[7px] bg-primary rounded-b-none" />}
             <div
                 className={cn(
-                    "flex w-full h-[120px] items-center rounded-md bg-accent/40 px-4 py-2 pointer-events-none opacity-100",
-                    mouseIsOver && "opacity-30"
+                    "relative flex w-full min-h-[120px] items-center rounded-md bg-accent/40 px-4 py-2 pointer-events-none opacity-100",
+                    mouseIsOver && "opacity-30",
+                    "transition-all" // Add transition for smoother height changes
                 )}
             >
                 <DesignerElement elementInstance={element} />
+                {bottomHalf.isOver && <div className="absolute bottom-0 w-full h-[7px] bg-primary rounded-t-none" />}
             </div>
-            {bottomHalf.isOver && <div className="absolute bottom-0 w-full rounded-md h-[7px] bg-primary rounded-t-none" />}
         </div>
     );
 }
