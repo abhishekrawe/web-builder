@@ -20,6 +20,7 @@ const extraAttributes = {
 
 const propertiesSchema = z.object({
   title: z.string().min(2).max(50),
+  textColor: z.string().min(4).max(7),
 });
 
 export const SubTitleFieldFormElement: FormElement = {
@@ -46,11 +47,11 @@ type CustomInstance = FormElementInstance & {
 
 function DesignerComponent({ elementInstance }: { elementInstance: FormElementInstance }) {
   const element = elementInstance as CustomInstance;
-  const { title } = element.extraAttributes;
+  const { title, textColor } = element.extraAttributes;
   return (
     <div className="flex flex-col gap-2 w-full">
       <Label className="text-muted-foreground">SubTitle field</Label>
-      <p className="text-lg">{title}</p>
+      <p className="text-xl" style={{ color: textColor }}>{title}</p>
     </div>
   );
 }
@@ -72,6 +73,7 @@ function PropertiesComponent({ elementInstance }: { elementInstance: FormElement
     mode: "onBlur",
     defaultValues: {
       title: element.extraAttributes.title,
+      textColor: element.extraAttributes.textColor,
     },
   });
 
@@ -80,11 +82,12 @@ function PropertiesComponent({ elementInstance }: { elementInstance: FormElement
   }, [element, form]);
 
   function applyChanges(values: propertiesFormSchemaType) {
-    const { title } = values;
+    const { title, textColor } = values;
     updateElement(element.id, {
       ...element,
       extraAttributes: {
         title,
+        textColor,
       },
     });
   }
@@ -107,6 +110,27 @@ function PropertiesComponent({ elementInstance }: { elementInstance: FormElement
               <FormControl>
                 <Input
                   {...field}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter") e.currentTarget.blur();
+                  }}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="textColor"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Select Color</FormLabel>
+              <FormControl>
+                <Input
+                  type="color"
+                  {...field}
+                  value={field.value}
                   onKeyDown={(e) => {
                     if (e.key === "Enter") e.currentTarget.blur();
                   }}

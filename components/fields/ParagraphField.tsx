@@ -2,6 +2,7 @@
 
 import { ElementsType, FormElement, FormElementInstance } from "../FormElements";
 import { Label } from "../ui/label";
+import { Input } from "../ui/input";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -20,6 +21,7 @@ const extraAttributes = {
 
 const propertiesSchema = z.object({
   text: z.string().min(2).max(500),
+  textColor: z.string().min(4).max(7),
 });
 
 export const ParagprahFieldFormElement: FormElement = {
@@ -46,11 +48,11 @@ type CustomInstance = FormElementInstance & {
 
 function DesignerComponent({ elementInstance }: { elementInstance: FormElementInstance }) {
   const element = elementInstance as CustomInstance;
-  const { text } = element.extraAttributes;
+  const { text, textColor } = element.extraAttributes;
   return (
     <div className="flex flex-col gap-2 w-full">
       <Label className="text-muted-foreground">Paragraph field</Label>
-      <p className="truncate">{text}</p>
+      <p className="text-xl" style={{ color: textColor }}>{text}</p>
     </div>
   );
 }
@@ -58,8 +60,8 @@ function DesignerComponent({ elementInstance }: { elementInstance: FormElementIn
 function FormComponent({ elementInstance }: { elementInstance: FormElementInstance }) {
   const element = elementInstance as CustomInstance;
 
-  const { text } = element.extraAttributes;
-  return <p className="text-muted-foreground">{text}</p>;
+  const { text, textColor } = element.extraAttributes;
+  return <p className="text-muted-foreground" style={{ color: textColor }}>{text}</p>;
 }
 
 type propertiesFormSchemaType = z.infer<typeof propertiesSchema>;
@@ -72,6 +74,7 @@ function PropertiesComponent({ elementInstance }: { elementInstance: FormElement
     mode: "onBlur",
     defaultValues: {
       text: element.extraAttributes.text,
+      textColor: element.extraAttributes.textColor,
     },
   });
 
@@ -80,11 +83,12 @@ function PropertiesComponent({ elementInstance }: { elementInstance: FormElement
   }, [element, form]);
 
   function applyChanges(values: propertiesFormSchemaType) {
-    const { text } = values;
+    const { text, textColor } = values;
     updateElement(element.id, {
       ...element,
       extraAttributes: {
         text,
+        textColor,
       },
     });
   }
@@ -109,6 +113,26 @@ function PropertiesComponent({ elementInstance }: { elementInstance: FormElement
                   rows={5}
                   {...field}
                   onKeyDown={(e) => {
+                    if (e.key === "Enter") e.currentTarget.blur();
+                  }}
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="textColor"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Select Color</FormLabel>
+              <FormControl>
+                <Input
+                  type="color"
+                  {...field}
+                  value={field.value}
+                  onKeyDown={(e: { key: string; currentTarget: { blur: () => void; }; }) => {
                     if (e.key === "Enter") e.currentTarget.blur();
                   }}
                 />
