@@ -44,7 +44,7 @@ function DesignerComponent({ elementInstance }: { elementInstance: FormElementIn
     const element = elementInstance as CustomInstance;
     const { imageSrc } = element.extraAttributes;
     return (
-        <div className="flex flex-col gap-2 w-full border border-gray-700 p-4">
+        <div className="flex flex-col gap-2 w-full p-4">
             {imageSrc ? (
                 <div className="flex justify-center items-center overflow-hidden max-w-full max-h-72">
                     <img src={imageSrc} alt="Selected" className="max-w-full max-h-full object-contain" />

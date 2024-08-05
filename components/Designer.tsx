@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import DesignerSidebar from "./DesignerSidebar";
 import { DragEndEvent, useDndMonitor, useDraggable, useDroppable } from "@dnd-kit/core";
 import { cn } from "@/lib/utils";
 import useDesigner from "./hooks/useDesigner";

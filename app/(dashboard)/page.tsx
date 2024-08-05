@@ -16,9 +16,9 @@ import { FaEdit } from "react-icons/fa";
 
 export default function Home() {
   return (
-    <div className="container pt-4">
-      <h2 className="text-4xl font-bold col-span-2 bg-gradient-to-r from-indigo-400 to-cyan-400 text-transparent bg-clip-text hover:cursor-pointer">Sites </h2>
-        <p> View and manage all your websites in one place.</p>
+    <div className="container p-3">
+      <h2 className="text-4xl font-bold col-span-2 hover:cursor-pointer font-sans">Sites </h2>
+        <p className="font-sans"> View and manage all your websites in one place.</p>
       <Separator className="my-6" />
       <div className="grid gric-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <CreateFormBtn />
@@ -54,9 +54,9 @@ function FormCard({ form }: { form: Form }) {
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2 justify-between">
-          <span className="truncate font-bold bg-indigo-400 text-transparent bg-clip-text hover:cursor-pointer">{form.name}</span>
+          <span className="truncate font-bold hover:cursor-pointer text-2xl">{form.name}</span>
           {form.published && <Badge>Published</Badge>}
-          {!form.published && <Badge variant={"destructive"}>Draft</Badge>}
+          {!form.published && <Badge variant={"default"}>Draft</Badge>}
         </CardTitle>
         <CardDescription className="flex items-center justify-between text-muted-foreground text-sm">
           {formatDistance(form.createdAt, new Date(), {

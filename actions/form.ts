@@ -6,41 +6,6 @@ import { currentUser } from "@clerk/nextjs";
 
 class UserNotFoundErr extends Error { }
 
-export async function GetFormStats() {
-    const user = await currentUser();
-    if (!user) {
-        throw new UserNotFoundErr();
-    }
-
-    const stats = await prisma.form.aggregate({
-        where: {
-            userId: user.id,
-        },
-        _sum: {
-            visits: true,
-            submissions: true,
-        },
-    });
-
-    const visits = stats._sum.visits || 0;
-    const submissions = stats._sum.submissions || 0;
-
-    let submissionRate = 0;
-
-    if (visits > 0) {
-        submissionRate = (submissions / visits) * 100;
-    }
-
-    const bounceRate = 100 - submissionRate;
-
-    return {
-        visits,
-        submissions,
-        submissionRate,
-        bounceRate,
-    };
-}
-
 export async function CreateForm(data: formSchemaType) {
     const validation = formSchema.safeParse(data);
     if (!validation.success) {
@@ -91,10 +56,14 @@ export async function GetFormById(id: number) {
         throw new UserNotFoundErr();
     }
 
+    if (typeof id !== 'number') {
+        throw new Error("Invalid form ID");
+    }
+
     return await prisma.form.findUnique({
         where: {
             userId: user.id,
-            id,
+            id: id,
         },
     });
 }

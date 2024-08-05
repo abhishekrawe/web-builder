@@ -53,13 +53,13 @@ function CreateFormBtn() {
                     className="group border border-primary/20 h-[190px] items-center justify-center flex flex-col hover:border-primary hover:cursor-pointer border-dashed gap-4"
                 >
                     <BsFileEarmarkPlus className="h-8 w-8 text-muted-foreground group-hover:text-primary" />
-                    <p className="font-bold text-xl text-muted-foreground group-hover:text-primary">Create New Site</p>
+                    <p className="font-bold text-xl text-muted-foreground group-hover:text-primary font-sans">Create New Site</p>
                 </Button>
             </DialogTrigger>
             <DialogContent>
                 <DialogHeader>
-                    <DialogTitle className="truncate font-bold bg-indigo-400 text-transparent bg-clip-text hover:cursor-pointer">Create your new site</DialogTitle>
-                    <DialogDescription>You're on your way to creating your first professional website</DialogDescription>
+                    <DialogTitle className="truncate font-bold hover:cursor-pointer font-sans">Create your new site</DialogTitle>
+                    <DialogDescription className="font-sans">You're on your way to creating your first professional website</DialogDescription>
                 </DialogHeader>
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
