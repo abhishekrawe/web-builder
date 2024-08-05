@@ -2,6 +2,11 @@
 
 Web Builder is a web application that allows users to quickly and easily create simple websites by dragging and dropping various elements. With elements like Name, Description, Image, Form (Name, Number), and Spacer, you can build a simple website, preview it, and access it directly. The dashboard lists all your websites, allowing for easy editing. Additionally, all websites come with dark and light mode functionality, enhancing productivity while working.
 
+## 🎊Some Glimpse of the App🎊
+
+https://github.com/user-attachments/assets/53990fdd-79cf-454e-bb5a-4fb63ab1c6e5
+
+
 ## Tech Stack
 
 - **Next.js 13** with App Router
