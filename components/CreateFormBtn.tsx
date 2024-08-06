@@ -59,7 +59,7 @@ function CreateFormBtn() {
             <DialogContent>
                 <DialogHeader>
                     <DialogTitle className="truncate font-bold hover:cursor-pointer font-sans">Create your new site</DialogTitle>
-                    <DialogDescription className="font-sans">You're on your way to creating your first professional website</DialogDescription>
+                    <DialogDescription className="font-sans">You are on your way to creating your first professional website</DialogDescription>
                 </DialogHeader>
                 <Form {...form}>
                     <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-2">
