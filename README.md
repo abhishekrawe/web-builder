@@ -4,7 +4,7 @@ Web Builder is a web application that allows users to quickly and easily create 
 
 ## 🎊Some Glimpse of the App🎊
 
-https://github.com/user-attachments/assets/53990fdd-79cf-454e-bb5a-4fb63ab1c6e5
+[https://github.com/user-attachments/assets/53990fdd-79cf-454e-bb5a-4fb63ab1c6e5](https://github.com/user-attachments/assets/a6999e3d-f51f-4e2c-9c8c-af58c41afed4)
 
 ## Getting Started
 
