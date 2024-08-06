@@ -81,8 +81,8 @@ function FormComponent({
 
     return (
         <div className="flex flex-col gap-2 w-full h-full border border-gray-700 p-4">
-            <Label>Image</Label>
-            <Input type="file" accept="image/*" onChange={handleFileChange} />
+            <Label>Images</Label>
+            {/* <Input type="file" accept="image/*" onChange={handleFileChange} /> */}
             {imageSrc && (
                 <div className="flex justify-center items-center overflow-hidden max-w-full max-h-72 mt-2">
                     <img src={imageSrc} alt="Selected" className="max-w-full max-h-full object-contain" />

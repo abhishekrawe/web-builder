@@ -23,7 +23,7 @@ export type ElementsType =
     | "DateField"
     | "SelectField"
     | "CheckboxField"
-    | "ImageField" ;
+    | "ImageField";
 
 export type SubmitFunction = (key: string, value: string) => void;
 
