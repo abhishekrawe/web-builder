@@ -6,35 +6,6 @@ Web Builder is a web application that allows users to quickly and easily create 
 
 https://github.com/user-attachments/assets/53990fdd-79cf-454e-bb5a-4fb63ab1c6e5
 
-
-## Tech Stack
-
-- **Next.js 13** with App Router
-- **Dnd-kit** library
-- **Server Actions**
-- **TypeScript**
-- **Tailwind CSS / Shadcn UI**
-- **Vercel PostgreSQL**
-- **Prisma** as ORM
-
-## Features
-
-- **Cross Platform**: Works seamlessly across different devices.
-- **Responsive**: Adapts to various screen sizes for an optimal viewing experience.
-- **Drag and Drop Designer**: Create forms effortlessly with a stunning drag-and-drop interface.
-- **Layout Fields**: Title, SubTitle, Spacer, Separator, Paragraph.
-- **Form Fields**: Text, Number, Select, Date, Checkbox, Textarea.
-- **Customizable Fields**: Easily add and customize new fields.
-- **Form Preview Dialog**: Preview forms before finalizing.
-- **Light/Dark Mode Toggle**: Switch between light and dark modes for a comfortable user experience.
-
-## Future Scope
-
-- Add more elements to the drag-and-drop interface.
-- Enhance flexibility by allowing specific width adjustments on the screen.
-- Add more properties to elements for better customization.
-- Integrate AI tools to generate basic templates with essential elements.
-
 ## Getting Started
 
 To get started with Web Builder locally, follow these steps:
@@ -81,6 +52,58 @@ To get started with Web Builder locally, follow these steps:
 By following these steps, you can quickly set up Web Builder locally, create and customize your forms, and preview your sites.
 
 ---
+
+### Backend Setup
+for Running this Project you need to add these environmnet variable in .env file
+
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+
+POSTGRES_PRISMA_URL="your_prisma_url"
+POSTGRES_URL_NON_POOLING="Your_url"
+
+### How to Setup prisma 
+```
+npx prisma studio
+```
+```
+Go to localhost:5000
+```
+
+
+
+
+## Tech Stack
+
+- **Next.js 13** with App Router
+- **Dnd-kit** library
+- **Server Actions**
+- **TypeScript**
+- **Tailwind CSS / Shadcn UI**
+- **Vercel PostgreSQL**
+- **Prisma** as ORM
+
+## Features
+
+- **Cross Platform**: Works seamlessly across different devices.
+- **Responsive**: Adapts to various screen sizes for an optimal viewing experience.
+- **Drag and Drop Designer**: Create forms effortlessly with a stunning drag-and-drop interface.
+- **Layout Fields**: Title, SubTitle, Spacer, Separator, Paragraph.
+- **Form Fields**: Text, Number, Select, Date, Checkbox, Textarea.
+- **Customizable Fields**: Easily add and customize new fields.
+- **Form Preview Dialog**: Preview forms before finalizing.
+- **Light/Dark Mode Toggle**: Switch between light and dark modes for a comfortable user experience.
+
+## Future Scope
+
+- Add more elements to the drag-and-drop interface.
+- Enhance flexibility by allowing specific width adjustments on the screen.
+- Add more properties to elements for better customization.
+- Integrate AI tools to generate basic templates with essential elements.
+
+
 
 Enjoy building your websites with **Web Builder**!
 
