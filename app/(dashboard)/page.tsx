@@ -14,11 +14,11 @@ import { FaEdit } from "react-icons/fa";
 
 export default function Home() {
   return (
-    <div className="container p-3">
-      <h2 className="text-4xl font-bold col-span-2 hover:cursor-pointer font-sans">Sites </h2>
-      <p className="font-sans"> View and manage all your websites in one place.</p>
+    <div className="container p-4 md:p-8">
+      <h2 className="text-2xl md:text-4xl font-bold hover:cursor-pointer font-sans">Sites</h2>
+      <p className="font-sans">View and manage all your websites in one place.</p>
       <Separator className="my-6" />
-      <div className="grid gric-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <CreateFormBtn />
         <Suspense
           fallback={[1, 2, 3, 4].map((el) => (
@@ -33,7 +33,7 @@ export default function Home() {
 }
 
 function FormCardSkeleton() {
-  return <Skeleton className="border-2 border-primary-/20 h-[190px] w-full" />;
+  return <Skeleton className="border-2 border-primary/20 h-[190px] w-full" />;
 }
 
 async function FormCards() {
@@ -49,32 +49,28 @@ async function FormCards() {
 
 function FormCard({ form }: { form: Form }) {
   return (
-    <Card>
+    <Card className="w-full">
       <CardHeader>
         <CardTitle className="flex items-center gap-2 justify-between">
-          <span className="truncate font-bold hover:cursor-pointer text-2xl">{form.name}</span>
-          {form.published && <Badge>Published</Badge>}
-          {!form.published && <Badge variant={"default"}>Draft</Badge>}
+          <span className="truncate font-bold hover:cursor-pointer text-xl md:text-2xl">{form.name}</span>
+          {form.published ? <Badge>Published</Badge> : <Badge variant="default">Draft</Badge>}
         </CardTitle>
         <CardDescription className="flex items-center justify-between text-muted-foreground text-sm">
-          {formatDistance(form.createdAt, new Date(), {
-            addSuffix: true,
-          })}
+          {formatDistance(form.createdAt, new Date(), { addSuffix: true })}
         </CardDescription>
       </CardHeader>
       <CardContent className="h-[20px] truncate text-sm text-muted-foreground">
         {form.description || "No description"}
       </CardContent>
       <CardFooter>
-        {form.published && (
+        {form.published ? (
           <Button asChild className="w-full mt-2 text-md gap-4">
             <Link href={`/forms/${form.id}`}>
               View submissions <BiRightArrowAlt />
             </Link>
           </Button>
-        )}
-        {!form.published && (
-          <Button asChild variant={"secondary"} className="w-full mt-2 text-md gap-4">
+        ) : (
+          <Button asChild variant="secondary" className="w-full mt-2 text-md gap-4">
             <Link href={`/builder/${form.id}`}>
               Edit Template <FaEdit />
             </Link>
