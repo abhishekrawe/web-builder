@@ -10,8 +10,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Fibr AI - Personalize your Landing Page",
-  description: "Fibr AI - Personalize your Landing Page",
+  title: "Web Builder - Personalize your Landing Page",
+  description: "Web Builder - Personalize your Landing Page",
 };
 
 export default function RootLayout({
